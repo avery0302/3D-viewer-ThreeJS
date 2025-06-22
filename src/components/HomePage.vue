@@ -34,7 +34,7 @@ function initScene() {
     0.1,
     1000,
   );
-  camera.position.z = 8;
+  camera.position.set(0, 0, 8);
 
   // Create renderer
   renderer = new THREE.WebGLRenderer({
@@ -73,10 +73,10 @@ function handleDrop(e) {
 
     loader.parse(arrayBuffer, "", (gltf) => {
       scene.clear();
-      // const light = new THREE.HemisphereLight(0xffffff, 0x444444);
       scene.add(light);
-      controls.enableDamping = false;
       controls.autoRotate = false;
+      camera.position.set(0, 0, 8);
+      camera.lookAt(0, 0, 0);
 
       scene.add(gltf.scene);
     });
@@ -90,7 +90,7 @@ function initControls() {
   controls.enableDamping = true;
   controls.dampingFactor = 0.05;
   controls.autoRotate = true;
-  controls.autoRotateSpeed = 16.0;
+  controls.autoRotateSpeed = 8.0;
   controls.target.set(0, 0, 0);
 }
 
@@ -100,8 +100,7 @@ function loadModel() {
   loader.load(
     new URL("../assets/planet.glb", import.meta.url).href,
     (gltf) => {
-      gltf.scene.rotation.z = Math.PI / 5;
-      gltf.scene.rotation.x = -Math.PI / 10;
+      gltf.scene.rotation.z = Math.PI / 1.8;
       scene.add(gltf.scene);
     },
     undefined,
@@ -116,7 +115,7 @@ onMounted(() => {
 });
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .home-page {
   width: 100%;
   height: 100%;

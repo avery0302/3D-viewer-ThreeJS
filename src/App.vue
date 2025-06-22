@@ -12,7 +12,7 @@ const state = reactive({});
 onMounted(() => {});
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .app {
   width: 100vw;
   height: 100vh;
